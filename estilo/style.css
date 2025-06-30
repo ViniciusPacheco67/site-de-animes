@@ -4,102 +4,177 @@
     box-sizing: border-box;
 }
 
+
 .container {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: grid;
-    grid-template-rows: 120px 60px 1fr 100px;
-    grid-template-columns: 1fr 350px;
+    grid-template-rows: 100px 50px 1fr 240px;
+    grid-template-columns: 1fr 300px;
     gap: 10px;
+    background: url(../fotos/pjkpojk_7zfb.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    transition: width 0.7s ease, height 0.7s ease;
 }
 
 .caixa {
     display: flex;
-    background-color: lightgreen;
-    border: 1px dashed black;
     padding: 10px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+
+    transition: width 0.7s ease, height 0.7s ease;
 }
 
 #topo {
+    background-color: rgb(0, 0, 0);
     grid-area: 1 / 1 / 2 / -1;
     font-size: 24px;
-    color: darkorange;
+    color: #ff8c00;
     display: flex;
     align-items: center;
+    cursor: pointer;
+
+    transition: width 0.7s ease, height 0.7s ease;
 }
 #menu {
+    background-color: rgba(0, 0, 0, 0.267);
     grid-area: 2 / 1 / 3 / -1;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+
+    transition: width 0.7s ease, height 0.7s ease;
 }
 
 .menu {
     display: flex;
-    gap: 10px;
+    gap: 48px;
+    width: 100%;
+    justify-content: center;
 }
 .menu a {
-    background-color: rgba(158, 183, 184, 0.438);
+    background-color: rgb(0, 0, 0);
     text-decoration: none;
-    color: black;
-    padding: 10px 16px;
-    border: 1px dashed black;
-    border-radius: 5px;
+    color: #ff8c00;;
+    padding: 10px;
+    margin: 0px 20px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
-    justify-content: center;
+
+    transition: width 0.7s ease, height 0.7s ease;
+}
+
+.menu a:hover {
+    background-color: #ff8c00;
+    color: rgb(0, 0, 0);
+
 }
 
 #principal {
+    background-color: rgba(0, 0, 0, 0.267);
     grid-area: 3 / 1 / 4 / 2;
+    grid-template-columns: repeat(5, 1fr);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 12px;
+
+    transition: width 0.7s ease, height 0.7s ease;
+}
+
+#principal h1 {
+    color: #ff8c00;
+}
+
+#listagem { 
+    height: 95%;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 10px;
+    border-radius: 12px;
+    align-content: flex-start;
     justify-content: center;
     transition: width 0.7s ease, height 0.7s ease;
 }
 
 .list {
+    background-color: rgba(255, 255, 255, 0.267);
     display: flex;
-    border: 1px dashed black;
-    padding: 10px;
     margin: 5px;
+    color: #ff8c00;
+    margin-top: 20px;
+    border-radius: 12px;
     align-items: center;
+    align-content: flex-start;
     justify-content: center;
-    flex: 1 1 150px; /* torna o item flexível */
-    min-width: 150px;
-    min-height: 150px;
+    flex-grow: 0; /* torna o item flexível */
+    flex-shrink: 1;
+    height: 250px;
+    width: 150px;
+
+    transition: width 0.7s ease, height 0.7s ease;
+}
+
+.list:hover {
+    background-color: rgba(240, 248, 255, 0.452);
+    color: black;
 }
 
 #secundario {
+    background-color: rgb(0, 0, 0);
     grid-area: 3 / 2 / 4 / 3;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 10px;
-    background-color: #f0f0f0;
-    border: 1px dashed black;
+    border-radius: 12px;
     align-items: center;
     justify-content: flex-start;
     overflow-y: auto;
+
+    transition: width 0.7s ease, height 0.7s ease;
+}
+
+#secundario h1 {
+    color: #ff8c00;
 }
 
 .secund {
+    background-color: rgba(255, 255, 255, 0.267);
+    color: #ff8c00;
     display: flex;
-    border: 1px dashed black;
     padding: 10px;
     margin: 5px;
+    border-radius: 12px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-width: 150px;
-    min-height: 150px;
-    width: 100%;
+    height: 120px;
+    width: 90%;
+
+    transition: width 0.7s ease, height 0.7s ease;
+}
+
+.secund:hover {
+    background-color: rgba(240, 248, 255, 0.452);
+    color: black;
 }
 
 #rodape {
+    background-color: rgb(0, 0, 0);
+    color:#ff8c00;
+    flex-direction: column;
     grid-area: 4 / 1 / 5 / -1;
     display: flex;
     align-items: center;
