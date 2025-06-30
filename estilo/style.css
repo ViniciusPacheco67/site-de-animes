@@ -1,6 +1,6 @@
 * {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -8,41 +8,100 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-rows: 80px 40px 1fr 40px;
-    grid-template-columns: 1fr 250px;
+    grid-template-rows: 120px 60px 1fr 100px;
+    grid-template-columns: 1fr 350px;
     gap: 10px;
 }
 
 .caixa {
+    display: flex;
     background-color: lightgreen;
     border: 1px dashed black;
     padding: 10px;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #topo {
     grid-area: 1 / 1 / 2 / -1;
     font-size: 24px;
     color: darkorange;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
 }
-#topo > a {
-    text-align: center;
-}
-
-
 #menu {
     grid-area: 2 / 1 / 3 / -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#pricinpal {
-    grid-area: 3 / 1 / -2 / 2;
+.menu {
+    display: flex;
+    gap: 10px;
+}
+.menu a {
+    background-color: rgba(158, 183, 184, 0.438);
+    text-decoration: none;
+    color: black;
+    padding: 10px 16px;
+    border: 1px dashed black;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#principal {
+    grid-area: 3 / 1 / 4 / 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.7s ease, height 0.7s ease;
+}
+
+.list {
+    display: flex;
+    border: 1px dashed black;
+    padding: 10px;
+    margin: 5px;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 150px; /* torna o item flexível */
+    min-width: 150px;
+    min-height: 150px;
 }
 
 #secundario {
-    grid-area: 3 / -2 / -2 / -1;
+    grid-area: 3 / 2 / 4 / 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px dashed black;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: auto;
+}
+
+.secund {
+    display: flex;
+    border: 1px dashed black;
+    padding: 10px;
+    margin: 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    min-height: 150px;
+    width: 100%;
 }
 
 #rodape {
-    grid-area: -2 / 1 / -1 / -1;
+    grid-area: 4 / 1 / 5 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
