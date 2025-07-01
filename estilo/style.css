@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+body, html {
+    height: 100vh;
+    width: 100vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: url(../fotos/pjkpojk_7zfb.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 
 .container {
     width: 100%;
@@ -12,12 +22,7 @@
     grid-template-rows: 100px 50px 1fr 240px;
     grid-template-columns: 1fr 300px;
     gap: 10px;
-    background: url(../fotos/pjkpojk_7zfb.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 
-    transition: width 0.7s ease, height 0.7s ease;
 }
 
 .caixa {
@@ -26,7 +31,6 @@
     align-items: center;
     justify-content: center;
 
-    transition: width 0.7s ease, height 0.7s ease;
 }
 
 #topo {
@@ -38,8 +42,17 @@
     align-items: center;
     cursor: pointer;
 
-    transition: width 0.7s ease, height 0.7s ease;
 }
+
+#topo div.menu {
+    height: 40px;
+    font-size: 18px;
+    display: flex;
+    align-content: flex-end;
+    justify-content: flex-end;
+}
+
+
 #menu {
     background-color: rgba(0, 0, 0, 0.267);
     grid-area: 2 / 1 / 3 / -1;
@@ -47,8 +60,6 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-
-    transition: width 0.7s ease, height 0.7s ease;
 }
 
 
@@ -64,13 +75,14 @@
     background-color: rgb(0, 0, 0);
     color: #ff8c00;
     display: flex;
+    font-size: 22px;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     border-radius: 12px;
     width: 120px;
+    height: 40px;
 
-    transition: width 0.7s ease, height 0.7s ease;
 }
 #genero:hover {
     background-color: #ff8c00;
@@ -81,14 +93,13 @@
     text-decoration: none;
     text-align: center;
     color: #ff8c00;
-    padding: 10px;
+    height: 40px;
     width: 120px;
     border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    transition: width 0.7s ease, height 0.7s ease;
 }
 
 .menu a:hover {
@@ -98,58 +109,75 @@
 }
 
 #principal {
-    background-color: rgba(0, 0, 0, 0.267);
+    background-color: rgba(0, 0, 0, 0.164);
     grid-area: 3 / 1 / 4 / 2;
-    grid-template-columns: repeat(5, 1fr);
     display: flex;
+    height: 100%;
     flex-wrap: wrap;
-    align-items: center;
+    align-content: center;
+    align-items: flex-start;
     justify-content: center;
     cursor: pointer;
     border-radius: 12px;
 
-    transition: width 0.7s ease, height 0.7s ease;
+    transition: transform 0.7s ease;
 }
 
 #principal h1 {
     color: #000000;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+#principal h1:hover {
+    color: #ff8c00;
+    transform: scale(1.05);
+    transition: transform 0.7s ease;
 }
 
 #listagem { 
-    height: 95%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.137);
+    width: 80%;
+    height: 79%;
+    background-color: rgba(0, 0, 0, 0.568);
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 10px;
     border-radius: 12px;
+    align-items: center;
     align-content: flex-start;
     justify-content: center;
-    transition: width 0.7s ease, height 0.7s ease;
 }
 
 .list {
-    background-color: rgba(255, 255, 255, 0.267);
+    background-color: rgba(0, 0, 0, 0.247);
     display: flex;
-    margin: 5px;
+    margin: 20px 5px 5px 5px;
     color: #ff8c00;
-    margin-top: 20px;
     border-radius: 12px;
     align-items: center;
     align-content: flex-start;
     justify-content: center;
     flex-grow: 0; /* torna o item flexível */
     flex-shrink: 1;
-    height: 250px;
-    width: 150px;
+    height: 180px;
+    width: 120px;
 
-    transition: width 0.7s ease, height 0.7s ease;
 }
 
 .list:hover {
     background-color: rgba(240, 248, 255, 0.452);
-    color: black;
+    color: black;  
+
+    transform: scale(1.05);
+    transition: transform 0.5s ease;
+}
+
+.poster {
+    border: 2px dashed red;
+    width: 80%;
+    height: 250px;
+    margin-top: 40px;
+    border-radius: 12px;
+    background-color: #00000036;
 }
 
 #secundario {
@@ -162,51 +190,66 @@
     border-radius: 12px;
     align-items: center;
     justify-content: flex-start;
-    overflow-y: auto;
 
-    transition: width 0.7s ease, height 0.7s ease;
 }
 
 #secundario h1 {
     color: #ff8c00;
+    font-size: 24px;
 }
 
 .secund {
-    background-color: rgba(255, 255, 255, 0.267);
+    background-color: rgba(0, 0, 0, 0.267);
     color: #ff8c00;
     display: flex;
-    padding: 10px;
-    margin: 5px;
     border-radius: 12px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 120px;
-    width: 90%;
+    height: 125px;
+    width: 100%;
 
-    transition: width 0.7s ease, height 0.7s ease;
+    transition: transform 0.7s ease;
 }
 
 .secund:hover {
-    background-color: rgba(240, 248, 255, 0.452);
+    background-color: rgba(0, 0, 0, 0.452);
     color: black;
 }
 
+.secund a {
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+    height: 120px;
+}
+
+.secund img {
+    width: 90%;
+    height: 120px;
+    border-radius: 12px;
+
+}
+
+.secund img:hover {
+    transform: scale(1.05);
+    transition: transform 0.7s ease;
+}
+
 #rodape {
-    background-color: rgba(0, 0, 0, 0.178);
+    background-color: rgb(0, 0, 0);
     color:#ff8c00;
     flex-direction: column;
     grid-area: 4 / 1 / 5 / -1;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
 }
 #rodape h2 {
     margin-top: 10px;
-    font-size: 34px;
+    font-size: 24px;
 }
 
 #rodape p {
     margin-top: 10px;
-    font-size: 18px;
+    font-size: 12px;
 }
