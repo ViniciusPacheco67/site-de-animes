@@ -51,11 +51,16 @@ main {
 .message-container {
     width: 100%;
     max-width: 500px;
-    margin-bottom: 20px;
+    margin: 0 auto 20px;
     padding: 10px;
     border-radius: 8px;
     text-align: center;
     display: none;
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
 }
 
 .message-container .erro {

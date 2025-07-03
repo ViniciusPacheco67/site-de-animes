@@ -50,9 +50,10 @@ backToTopButton.addEventListener('click', (e) => {
 // Carrossel de imagens para o banner (opcional)
 const bannerImages = [
     '../imagens/FEzQxqZXwAMnGia.jpg',
-    '../imagens/download.jpg',
     '../imagens/bleach-color-page_8vuh.jpg',
-    '../imagens/kaiju-no-8.webp'
+    '../imagens/Dandadan-Segunda-Temporada-Okarun-Momo-Ayase-Vovo-Turbo-CAPA.webp',
+    '../imagens/kaiju-no-8.webp',
+
 ];
 
 let currentBannerIndex = 0;
@@ -64,8 +65,8 @@ function changeBannerImage() {
     banner.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('${newImageUrl}')`;
 }
 
-// Mudar a imagem do banner a cada 5 segundos
-setInterval(changeBannerImage, 5000);
+// Mudar a imagem do banner a cada 3 segundos
+setInterval(changeBannerImage, 3000);
 
 // Lazy loading para imagens
 document.addEventListener('DOMContentLoaded', () => {
