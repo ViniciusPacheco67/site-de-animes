@@ -3,45 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Faça login para acessar sua conta no Animes.online">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="media-query.css">
-    <title>Tela de login</title>
+    <title>Login - Animes.online</title>
 </head>
 <body>
+    <header>
+        <a href="../index.html" class="home-link"><i class="fa-solid fa-house"></i> Voltar para o site</a>
+    </header>
+    
     <main>
-         <div id="resposta">
-
-            </div>
+        <div id="resposta" class="message-container"></div>
+        
         <section id="login">
             <div id="imagen">
-                <img id="img" src="imagen/ai-generated-9284039_640.png" alt="">
+                <img id="img" src="imagen/ai-generated-9284039_640.png" alt="Imagem de login anime">
             </div>
             <div id="formulario">
                 <h1>Login</h1>
                 <p>Entre com a sua conta</p>
-                <form action="" method="post">
+                <form id="login-form" action="" method="post">
                     <div class="campo">
                         <i class="fa-solid fa-circle-user" id="logo"></i>
                         <label for="iemail">Email</label>
-                        <input type="email" name="email" id="iemail" placeholder="Email" required minlength="20"><br>
+                        <input type="email" name="email" id="iemail" placeholder="Email" required>
                     </div>
                     <div class="campo">
                         <i class="fa-solid fa-key" id="logo"></i>
                         <label for="isenha">Senha</label>
-                        <input type="password" name="senha" id="isenha" placeholder="Senha" required minlength="8"><br>
-            
+                        <input type="password" name="senha" id="isenha" placeholder="Senha" required>
                     </div>
-                    <input type="submit" value="entrar" onclick="Clicar()" id="btn"><br>
-                    <a id="link" href="esqueci.html">
-                        esqueceu a senha 
-                        <i class="fa-solid fa-house"></i>                      
-                    </a>
+                    <button type="submit" id="btn">Entrar</button>
+                    <div class="form-options">
+                        <a id="link" href="esqueci.html">
+                            Esqueceu a senha?
+                            <i class="fa-solid fa-question"></i>                      
+                        </a>
+                        <a id="link" href="cadastro.html">
+                            Criar conta
+                            <i class="fa-solid fa-user-plus"></i>                      
+                        </a>
+                    </div>
                 </form>
             </div>
         </section>
     </main>
+    
+    <footer>
+        <p>&copy; 2023 Animes.online - Todos os direitos reservados</p>
+    </footer>
+    
     <script src="script.js"></script>    
 </body>
 </html>

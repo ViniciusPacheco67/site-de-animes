@@ -2,43 +2,91 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-
 }
-
 
 body {
     font-family: "Henny Penny", system-ui;
     font-weight: bold;
-    font-style:normal;
+    font-style: normal;
     background-color: rgb(150, 170, 170);
     background: url(imagen/pumpkins-7469975.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    text-align: left;
+}
+
+.home-link {
+    color: #e27f2e;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.home-link:hover {
+    color: #ffffff;
 }
 
 main {
-   display: flex;
-   min-height: 100vh;
-   width: 100%;
-   align-items: center;
-   justify-content: center;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.message-container {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+    display: none;
+}
+
+.message-container .erro {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.message-container .sucesso {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 #login {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background-color: rgba(192, 192, 192, 0.26);
+    background-color: rgba(0, 0, 0, 0.7);
     width: 320px;
-    height: 600px;
     border-radius: 18px;
-    box-shadow: 2px 2px 3px 5px rgba(0, 0, 0, 0.082);
-    
-    transition: height, .7s ease, width .7s ease;
-   
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease;
+}
+
+#login:hover {
+    transform: translateY(-5px);
 }
 
 #imagen {
@@ -49,44 +97,41 @@ main {
     justify-content: center;
     border-radius: 0px 0px 40px 40px;
     cursor: pointer;
-
-    transform: height .7s ease, width .7s ease;
+    transition: background-color 0.3s ease;
 }
 
 #imagen:hover {
-    background-color: #e27f2e;  
+    background-color: #e27f2e;
 }
 
 #img {
-  height: 80%;
+    height: 80%;
+    transition: transform 0.5s ease;
+}
+
+#imagen:hover #img {
+    transform: scale(1.1);
 }
 
 #formulario {
     display: flex;
-    padding: 15px;
+    padding: 25px;
     flex-direction: column;
 }
+
 #formulario > h1 {
-    color: #000000;
+    color: #e27f2e;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 #formulario > p {
-    color: #000000;
+    color: #ffffff;
     font-size: 0.9rem;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
-#tela-login {
-    height: 500px;
-    background-color: white;
-    width: 300px;
-    align-items: center;
-    justify-content: center;
-    
-}
 .campo {
     background-color: #000000;
     border: 2px solid #000000;
@@ -98,11 +143,16 @@ main {
     padding-left: 5px;
     border-radius: 8px;
     margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+.campo-ativo {
+    border-color: #e27f2e;
 }
 
 #logo {
     font-size: 26px;
-    color:#e27f2e;
+    color: #e27f2e;
     align-items: center;
     padding-top: 8px;
     padding-right: 8px;
@@ -111,7 +161,6 @@ main {
 
 .campo > label {
     display: none;
-
 }
 
 .campo > input {
@@ -124,18 +173,18 @@ main {
     border-radius: 8px;
     align-items: center;
     cursor: pointer;
-
+    transition: background-color 0.3s ease;
 }
 
-.campo > input:hover {
+.campo > input:hover,
+.campo > input:focus {
     background-color: rgb(230, 227, 225);
-    height: 100%;
-    width: 100%;
+    outline: none;
 }
 
 #btn {
     font-family: "Henny Penny", system-ui;
-    background-color:#e27f2e;
+    background-color: #e27f2e;
     align-items: center;
     justify-self: center;
     height: 44px;
@@ -144,19 +193,44 @@ main {
     border: none;
     margin-bottom: 20px;
     cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 #btn:hover {
     color: #e27f2e;
     background-color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(226, 127, 46, 0.3);
 }
 
-a {
+.form-options {
     display: flex;
-    color: #000000;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#link {
+    display: flex;
+    color: #ffffff;
     text-decoration: none;
     align-items: center;
     justify-content: center;
     gap: 5px;
-    
+    font-size: 14px;
+    transition: color 0.3s ease;
+    margin: 5px 0;
+}
+
+#link:hover {
+    color: #e27f2e;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #e27f2e;
+    text-align: center;
+    padding: 15px;
+    margin-top: auto;
 }

@@ -1,212 +1,181 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site de animes online com os melhores títulos e lançamentos">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Henny+Penny&display=swap" rel="stylesheet">
-    <title>animes.online </title>
+    <title>Animes.online - Seu portal de animes</title>
     <link rel="stylesheet" href="estilo/style.css">
     <link rel="stylesheet" href="medias/style.css">
 </head>
 <body>
     <div class="container">
         <header class="caixa" id="topo">
-            <i class="fa-solid fa-web-awesome" id="logo"></i>
-            <p>Animes.onlines</p>
-                <div class="menu">
-                    <a href="" class="link">Inicio</a>
-                     <select class="link" id="genero" size="1">
-                        <option value="" selected disabled>Genero</option>
-                        <option value="Ação">Ação</option>
-                        <option value="Aventura">Aventura</option>
-                        <option value="Comédia">Comédia</option>
-                        <option value="Drama">Drama</option>
-                        <option value="Fantasia">Fantasia</option>
-                        <option value="Horror">Horror</option>
-                        <option value="Romance">Romance</option>
-                        <option value="Sci-Fi">Sci-Fi</option>
-                        <option value="Sobrenatural">Sobrenatural</option>
-                       </select> 
-                    </a>
-                    <a href="tela-de-login/index.html" class="link">Login
-
-                    </a>
-                </div>
+            <i class="fa-solid fa-dragon" id="logo">Animes.online</i>
+            <nav class="menu">
+                <a href="index.html" class="link">Início</a>
+                <a href="animes.html" class="link">Animes</a>
+                <a href="mangas.html" class="link">Mangás</a>
+                <a href="contato/index.html" class="link">Contato</a>
+                <a href="tela-de-login/index.html" class="link">Login</a>
+            </nav>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar anime...">
+                <button id="search-button"><i class="fa-solid fa-search"></i></button>
+            </div>
         </header>
-    
+        
+        <section class="banner">
+            <div class="banner-content">
+                <h1>Bem-vindo ao Animes.online</h1>
+                <p>Seu portal para os melhores animes e mangás!</p>
+            </div>
+        </section>
+        
         <main class="caixa" id="principal">
+            <h2 class="section-title">Animes em Destaque</h2>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=1"> 
+                    <img src="imagens/download (7).jpg" alt="Kanojo Okarishimasu 4th Season">
+                    <span class="anime-title">Kanojo Okarishimasu</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=2"> 
+                    <img src="imagens/FEzQxqZXwAMnGia.jpg" alt="Jujutsu Kaisen">
+                    <span class="anime-title">Jujutsu Kaisen</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=3"> 
+                    <img src="imagens/download.jpg" alt="Demon Slayer">
+                    <span class="anime-title">Demon Slayer</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=4"> 
+                    <img src="imagens/images (1).jpg" alt="One Piece">
+                    <span class="anime-title">One Piece</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=5"> 
+                    <img src="imagens/download (1).jpg" alt="Attack on Titan">
+                    <span class="anime-title">Attack on Titan</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=6"> 
+                    <img src="imagens/bleach-color-page_8vuh.jpg" alt="Bleach">
+                    <span class="anime-title">Bleach</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=7"> 
+                    <img src="imagens/download (2).jpg" alt="My Hero Academia">
+                    <span class="anime-title">My Hero Academia</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=8"> 
+                    <img src="imagens/download (3).jpg" alt="Tokyo Revengers">
+                    <span class="anime-title">Tokyo Revengers</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=9"> 
+                    <img src="imagens/download (4).jpg" alt="Chainsaw Man">
+                    <span class="anime-title">Chainsaw Man</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=10"> 
+                    <img src="imagens/download (5).jpg" alt="Spy x Family">
+                    <span class="anime-title">Spy x Family</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=11"> 
+                    <img src="imagens/kaiju-no-8.webp" alt="Kaiju No. 8">
+                    <span class="anime-title">Kaiju No. 8</span>
                 </a>
             </div>
             <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
-                </a>
-            </div>
-            <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
-                </a>
-            </div>
-            <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
-                </a>
-            </div>
-            <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
-                </a>
-            </div>
-            <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
-                </a>
-            </div>
-            <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
-                </a>
-            </div>
-            <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
-                </a>
-            </div>
-            <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
-                </a>
-            </div>
-            <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
-                </a>
-            </div>
-            <div class="list">
-                <a href="https://animesdrive.blog/episodio/kanojo-okarishimasu-4th-season-episodio-01"> 
-                    <img src="imagens/download (7).jpg" alt="">
+                <a href="anime-details.html?id=12"> 
+                    <img src="imagens/Dandadan-Segunda-Temporada-Okarun-Momo-Ayase-Vovo-Turbo-CAPA.webp" alt="Dandadan">
+                    <span class="anime-title">Dandadan</span>
                 </a>
             </div>
         </main>
+        
         <aside class="caixa" id="secundario">
-            <h1>os mais assistidos</h1>
+            <h2>Os Mais Assistidos</h2>
             <div class="secund">
-                <a href="">
-                    <img src="imagens/FEzQxqZXwAMnGia.jpg" alt="">
+                <a href="anime-details.html?id=2">
+                    <img src="imagens/FEzQxqZXwAMnGia.jpg" alt="Jujutsu Kaisen">
+                    <span class="anime-title">Jujutsu Kaisen</span>
                 </a>
             </div>
             <div class="secund">
-                <a href="">
-                    <img src="imagens/download.jpg" alt="">
+                <a href="anime-details.html?id=3">
+                    <img src="imagens/download.jpg" alt="Demon Slayer">
+                    <span class="anime-title">Demon Slayer</span>
                 </a>
             </div>
             <div class="secund">
-                <a href="">
-                    <img src="imagens/images (1).jpg" alt="">
+                <a href="anime-details.html?id=4">
+                    <img src="imagens/images (1).jpg" alt="One Piece">
+                    <span class="anime-title">One Piece</span>
                 </a>
             </div>
             <div class="secund">
-                <a href="">
-                    <img src="imagens/download (1).jpg" alt="">
+                <a href="anime-details.html?id=5">
+                    <img src="imagens/download (1).jpg" alt="Attack on Titan">
+                    <span class="anime-title">Attack on Titan</span>
                 </a>
             </div>
             <div class="secund">
-                <a href="">
-                    <img src="imagens/bleach-color-page_8vuh.jpg" alt="">
-                </a>
-            </div>
-            <div class="secund">
-                <a href="">
-                    <img src="imagens/download (2).jpg" alt="">
-                </a>
-            </div>
-            <div class="secund">
-                <a href="">
-                    <img src="imagens/download (3).jpg" alt="">
-                </a>
-            </div>
-            <div class="secund">
-                <a href="">
-                    <img src="imagens/download (4).jpg" alt="">
-                </a>
-            </div>
-            <div class="secund">
-                <a href="">
-                    <img src="imagens/download (5).jpg" alt="">
-                </a>
-            </div>
-            <div class="secund">
-                <a href="">
-                    <img src="imagens/kaiju-no-8.webp" alt="">
-                </a>
-            </div>
-            <div class="secund">
-                <a href="">
-                    <img src="imagens/Dandadan-Segunda-Temporada-Okarun-Momo-Ayase-Vovo-Turbo-CAPA.webp" alt="">
+                <a href="anime-details.html?id=6">
+                    <img src="imagens/bleach-color-page_8vuh.jpg" alt="Bleach">
+                    <span class="anime-title">Bleach</span>
                 </a>
             </div>
         </aside>
+        
         <footer class="caixa" id="rodape">
-            &COPY;SITE CRIADO POR VINICIUS PACHECO.
-            <h2>Todos os direitos reservados.</h2>
-            <p>Este site é apenas para fins educacionais e não hospeda nenhum conteúdo.</p>
-        </footer>
-
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Animes.online</h3>
+                    <p>Seu portal de animes e mangás favoritos</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="animes.html">Animes</a></li>
+                        <li><a href="mangas.html">Mangás</a></li>
+                        <li><a href="contato/index.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2023 SITE CRIADO POR VINICIUS PACHECO.
+                <p>Este site é apenas para fins educacionais e não hospeda nenhum conteúdo.</p>
+                <a href="#topo" class="back-to-top">Voltar ao topo <i class="fa-solid fa-arrow-up"></i></a>
+            </div>
+        </footer> 
     </div>
-    
+    <script src="javascript/script.js"></script>
 </body>
 </html>

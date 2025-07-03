@@ -1,0 +1,466 @@
+/* Estilos para a página de detalhes do anime */
+
+.details-container {
+    grid-template-rows: 100px auto auto auto auto;
+    grid-template-columns: 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.breadcrumb {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px 0;
+    color: #ccc;
+    grid-area: 2 / 1 / 3 / -1;
+}
+
+.breadcrumb a {
+    color: #ff8c00;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: #ffffff;
+}
+
+/* Conteúdo principal */
+.anime-details-content {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    grid-area: 3 / 1 / 4 / -1;
+    margin-bottom: 20px;
+}
+
+/* Cabeçalho do anime */
+.anime-header {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.anime-poster {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.anime-poster img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.anime-rating {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.anime-rating span {
+    color: #ff8c00;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.stars {
+    margin-top: 5px;
+    color: #ff8c00;
+}
+
+.watch-button, .favorite-button {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.watch-button {
+    background-color: #ff8c00;
+    color: #000;
+    font-weight: bold;
+}
+
+.watch-button:hover {
+    background-color: #e67e00;
+    transform: translateY(-2px);
+}
+
+.favorite-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.favorite-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.favorite-button.active i {
+    color: #ff0000;
+}
+
+/* Informações do anime */
+.anime-info {
+    flex: 1;
+}
+
+.anime-info h1 {
+    color: #ff8c00;
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.anime-meta {
+    display: flex;
+    gap: 20px;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.anime-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.genre-tag {
+    background-color: rgba(255, 140, 0, 0.2);
+    color: #ff8c00;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.anime-synopsis h2 {
+    color: #ff8c00;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.anime-synopsis p {
+    color: #fff;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Abas */
+.anime-tabs {
+    display: flex;
+    border-bottom: 2px solid #ff8c00;
+    margin-bottom: 20px;
+}
+
+.tab-button {
+    background-color: transparent;
+    border: none;
+    color: #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.tab-button:hover {
+    color: #ff8c00;
+}
+
+.tab-button.active {
+    color: #ff8c00;
+    border-bottom: 3px solid #ff8c00;
+    margin-bottom: -2px;
+}
+
+.tab-pane {
+    display: none;
+    padding: 20px 0;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+/* Lista de episódios */
+.episodes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.episode-item {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.episode-item:hover {
+    background-color: rgba(255, 140, 0, 0.2);
+}
+
+.episode-number {
+    background-color: #ff8c00;
+    color: #000;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.episode-title {
+    flex: 1;
+    margin-left: 15px;
+    color: #fff;
+}
+
+.episode-date {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* Grade de personagens */
+.characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.character-card {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+}
+
+.character-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.character-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.character-name {
+    color: #ff8c00;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.character-role {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* Animes relacionados */
+.related-anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.related-anime-card {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.related-anime-card:hover {
+    transform: translateY(-5px);
+}
+
+.related-anime-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.related-anime-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.related-anime-title {
+    color: #ff8c00;
+    font-weight: bold;
+}
+
+/* Seção de comentários */
+.comments-section {
+    color: #fff;
+}
+
+.comments-section h3 {
+    color: #ff8c00;
+    margin-bottom: 15px;
+}
+
+.comment-form {
+    margin-bottom: 20px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    font-family: inherit;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.comment-form button {
+    background-color: #ff8c00;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+    background-color: #e67e00;
+}
+
+.comments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.comment-item {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.comment-user {
+    color: #ff8c00;
+    font-weight: bold;
+}
+
+.comment-date {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+.comment-content {
+    color: #fff;
+    line-height: 1.5;
+}
+
+/* Recomendações */
+.recommendations {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    grid-area: 4 / 1 / 5 / -1;
+    margin-bottom: 20px;
+}
+
+.recommendations h3 {
+    color: #ff8c00;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid rgba(255, 140, 0, 0.3);
+    padding-bottom: 10px;
+}
+
+.recommendations-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.recommendation-card {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-5px);
+}
+
+.recommendation-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.recommendation-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.recommendation-title {
+    color: #ff8c00;
+    font-weight: bold;
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .anime-header {
+        flex-direction: column;
+    }
+    
+    .anime-poster {
+        flex: 0 0 auto;
+        max-width: 250px;
+        margin: 0 auto;
+    }
+    
+    .anime-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .tab-button {
+        flex: 1 0 auto;
+        text-align: center;
+        padding: 10px;
+    }
+    
+    .characters-grid,
+    .related-anime-grid,
+    .recommendations-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}

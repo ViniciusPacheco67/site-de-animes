@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalhes do anime - Animes.online">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Henny+Penny&display=swap" rel="stylesheet">
+    <title>Detalhes do Anime - Animes.online</title>
+    <link rel="stylesheet" href="estilo/style.css">
+    <link rel="stylesheet" href="medias/style.css">
+    <link rel="stylesheet" href="estilo/anime-details.css">
+</head>
+<body>
+    <div class="container details-container">
+        <header class="caixa" id="topo">
+            <i class="fa-solid fa-dragon" id="logo">Animes.online</i>
+            <nav class="menu">
+                <a href="index.html" class="link">Início</a>
+                <a href="animes.html" class="link">Animes</a>
+                <a href="mangas.html" class="link">Mangás</a>
+                <a href="contato/index.html" class="link">Contato</a>
+                <a href="tela-de-login/index.html" class="link">Login</a>
+            </nav>
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Buscar anime...">
+                <button id="search-button"><i class="fa-solid fa-search"></i></button>
+            </div>
+        </header>
+        
+        <div class="breadcrumb">
+            <a href="index.html">Início</a> &gt; 
+            <a href="animes.html">Animes</a> &gt; 
+            <span id="anime-title-breadcrumb">Carregando...</span>
+        </div>
+        
+        <main class="anime-details-content">
+            <div class="anime-header">
+                <div class="anime-poster">
+                    <img id="anime-poster" src="" alt="Poster do anime">
+                    <div class="anime-rating">
+                        <span id="anime-rating">0.0</span>/10
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <button class="watch-button">Assistir Agora</button>
+                    <button class="favorite-button"><i class="far fa-heart"></i> Adicionar aos Favoritos</button>
+                </div>
+                
+                <div class="anime-info">
+                    <h1 id="anime-title">Carregando...</h1>
+                    <div class="anime-meta">
+                        <span id="anime-year">Ano: ----</span>
+                        <span id="anime-episodes">Episódios: --</span>
+                        <span id="anime-status">Status: ------</span>
+                    </div>
+                    
+                    <div class="anime-genres" id="anime-genres">
+                        <!-- Gêneros serão adicionados via JavaScript -->
+                    </div>
+                    
+                    <div class="anime-synopsis">
+                        <h2>Sinopse</h2>
+                        <p id="anime-synopsis">Carregando informações do anime...</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="anime-tabs">
+                <button class="tab-button active" data-tab="episodes">Episódios</button>
+                <button class="tab-button" data-tab="characters">Personagens</button>
+                <button class="tab-button" data-tab="related">Relacionados</button>
+                <button class="tab-button" data-tab="comments">Comentários</button>
+            </div>
+            
+            <div class="tab-content">
+                <div id="episodes" class="tab-pane active">
+                    <div class="episodes-list" id="episodes-list">
+                        <!-- Episódios serão adicionados via JavaScript -->
+                    </div>
+                </div>
+                
+                <div id="characters" class="tab-pane">
+                    <div class="characters-grid" id="characters-grid">
+                        <!-- Personagens serão adicionados via JavaScript -->
+                    </div>
+                </div>
+                
+                <div id="related" class="tab-pane">
+                    <div class="related-anime-grid" id="related-anime-grid">
+                        <!-- Animes relacionados serão adicionados via JavaScript -->
+                    </div>
+                </div>
+                
+                <div id="comments" class="tab-pane">
+                    <div class="comments-section">
+                        <h3>Comentários</h3>
+                        <div class="comment-form">
+                            <textarea placeholder="Deixe seu comentário sobre este anime..."></textarea>
+                            <button>Enviar</button>
+                        </div>
+                        <div class="comments-list" id="comments-list">
+                            <!-- Comentários serão adicionados via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <aside class="recommendations">
+            <h3>Recomendados para você</h3>
+            <div class="recommendations-list" id="recommendations-list">
+                <!-- Recomendações serão adicionadas via JavaScript -->
+            </div>
+        </aside>
+        
+        <footer class="caixa" id="rodape">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Animes.online</h3>
+                    <p>Seu portal de animes e mangás favoritos</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="animes.html">Animes</a></li>
+                        <li><a href="mangas.html">Mangás</a></li>
+                        <li><a href="contato/index.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2023 SITE CRIADO POR VINICIUS PACHECO.
+                <p>Este site é apenas para fins educacionais e não hospeda nenhum conteúdo.</p>
+                <a href="#topo" class="back-to-top">Voltar ao topo <i class="fa-solid fa-arrow-up"></i></a>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="javascript/anime-data.js"></script>
+    <script src="javascript/anime-details.js"></script>
+</body>
+</html>
