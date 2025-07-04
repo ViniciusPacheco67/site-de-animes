@@ -127,9 +127,6 @@ function loadEpisodes(episodes) {
 
   // 🔥 Exemplo de links reais associados aos episódios (adicione conforme precisar)
   const links = {
-    1: "https://www.crunchyroll.com/pt-br/naruto/episode-1",
-    2: "https://www.crunchyroll.com/pt-br/naruto/episode-2",
-    3: "https://www.crunchyroll.com/pt-br/naruto/episode-3"
     // Adicione mais se quiser
   };
 

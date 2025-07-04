@@ -6,6 +6,9 @@
 }
 
 body {
+  width: 100vw;
+  height: 100%;
+  overflow-x: hidden;
   font-family: 'Bebas Neue', sans-serif;
   background-color: #121212;
   color: #f0f0f0;
@@ -16,7 +19,8 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  width:  100%;
 }
 
 /* Header / Topo */
@@ -32,24 +36,27 @@ body {
 #logo {
   font-size: 34px;
   color: #ff8c00;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 40px 5px 5px 20px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-#logo i {
-  font-size: 28px;
-  color:#ff8c00;
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+  
 }
 
 .menu a {
   color: #f0f0f0;
   text-decoration: none;
-  margin-left: 20px;
-  font-size: 18px;
+  margin-top: 20px;
+  font-size: 24px;
   transition: color 0.3s;
+  align-items: center;
 }
 
 .menu a:hover {
@@ -60,7 +67,7 @@ body {
 .perfil {
   flex: 1;
   padding: 40px 20px;
-  max-width: 900px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -101,8 +108,9 @@ body {
 .btn {
   padding: 10px 20px;
   font-size: 16px;
+  width: 250px;
   background-color: #ff0048;
-  color: #fff;
+  color: #ffffff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -132,7 +140,7 @@ body {
 .footer-content {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   gap: 30px;
   margin-bottom: 20px;
 }
@@ -194,26 +202,47 @@ body {
 @media (max-width: 768px) {
   .menu {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
   }
 
   .footer-content {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
   }
 
   .perfil {
     padding: 20px 10px;
   }
 
+  .user-info {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #novoAnime {
+    width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
   .actions {
     flex-direction: column;
+    align-items: center;
   }
 
   .btn {
-    width: 100%;
+    display: flex;
+    width: 250px;
     text-align: center;
+    justify-content: center;
+    margin-bottom: 20px;
   }
 }
 

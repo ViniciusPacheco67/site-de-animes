@@ -16,7 +16,6 @@
 
     #topo i {
         font-size: 20px;
-        border-left: 1px solid #ff8c00;
     }
 
     #logo {
@@ -29,18 +28,34 @@
         flex-direction: row;
         justify-content: center;
         gap: 10px;
-        margin: 10px 0;
+        margin-top: 10px;
         
     }
 
     .menu a {
         font-size: 14px;
         padding: 5px 10px;
+      
+    }
+
+    #search-input {
+         border-radius: 0px 5px 5px 0px;
     }
 
     .search-container {
         width: 100%;
         margin-top: 10px;
+        border-radius: 0px 5px 5px 0px;
+        align-items: center;
+        justify-content: start;
+        flex-direction: row-reverse;
+    }
+
+    #search-button {
+        border-radius: 5px 0px 0px 5px;
+    }
+
+    #login {
         align-items: center;
         justify-content: end;
     }
