@@ -430,3 +430,9 @@ function getRecommendations(currentAnimeId, limit = 6) {
         .sort(() => 0.5 - Math.random())
         .slice(0, limit);
 }
+
+episodes: [
+  { number: 1, title: "O Começo", date: "2023-01-01" },
+  { number: 2, title: "A Prova", date: "2023-01-02" },
+  { number: 3, title: "Sasuke e Sakura", date: "2023-01-03" }
+]

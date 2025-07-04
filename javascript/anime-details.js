@@ -117,33 +117,43 @@ function loadGenres(genres) {
 
 // Função para carregar os episódios
 function loadEpisodes(episodes) {
-    const episodesList = document.getElementById('episodes-list');
-    episodesList.innerHTML = '';
-    
-    if (episodes.length === 0) {
-        episodesList.innerHTML = '<p class="no-content">Nenhum episódio disponível.</p>';
-        return;
-    }
-    
-    episodes.forEach(episode => {
-        const episodeItem = document.createElement('div');
-        episodeItem.className = 'episode-item';
-        episodeItem.innerHTML = `
-            <div class="episode-number">${episode.number}</div>
-            <div class="episode-title">${episode.title}</div>
-            <div class="episode-date">${episode.date}</div>
-            <button class="episode-watch"><i class="fas fa-play"></i></button>
-        `;
-        
-        // Adicionar evento de clique para assistir o episódio
-        const watchButton = episodeItem.querySelector('.episode-watch');
-        watchButton.addEventListener('click', () => {
-            // Aqui você pode implementar a lógica para assistir o episódio
-        });
-        
-        episodesList.appendChild(episodeItem);
-    });
+  const episodesList = document.getElementById('episodes-list');
+  episodesList.innerHTML = '';
+
+  if (!episodes || episodes.length === 0) {
+    episodesList.innerHTML = '<p class="no-content">Nenhum episódio disponível.</p>';
+    return;
+  }
+
+  // 🔥 Exemplo de links reais associados aos episódios (adicione conforme precisar)
+  const links = {
+    1: "https://www.crunchyroll.com/pt-br/naruto/episode-1",
+    2: "https://www.crunchyroll.com/pt-br/naruto/episode-2",
+    3: "https://www.crunchyroll.com/pt-br/naruto/episode-3"
+    // Adicione mais se quiser
+  };
+
+  episodes.forEach(episode => {
+    const episodeItem = document.createElement('div');
+    episodeItem.className = 'episode-item';
+
+    const link = links[episode.number];
+
+    episodeItem.innerHTML = `
+      <div class="episode-number">${episode.number}</div>
+      <div class="episode-title">${episode.title}</div>
+      <div class="episode-date">${episode.date}</div>
+      ${
+        link
+          ? `<a class="episode-watch" href="${link}" target="_blank"><i class="fas fa-play"></i> Assistir</a>`
+          : `<button class="episode-watch" disabled><i class="fas fa-play"></i> Indisponível</button>`
+      }
+    `;
+
+    episodesList.appendChild(episodeItem);
+  });
 }
+
 
 // Função para carregar os personagens
 function loadCharacters(characters) {
