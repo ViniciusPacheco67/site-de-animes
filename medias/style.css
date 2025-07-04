@@ -16,14 +16,21 @@
 
     #topo i {
         font-size: 20px;
-        margin-bottom: 10px;
+        border-left: 1px solid #ff8c00;
+    }
+
+    #logo {
+        font-size: 1.5rem;
+        margin-top: 40px;
     }
 
     .menu {
         flex-wrap: wrap;
+        flex-direction: column;
         justify-content: center;
         gap: 10px;
         margin: 10px 0;
+        
     }
 
     .menu a {
@@ -34,15 +41,13 @@
     .search-container {
         width: 100%;
         margin-top: 10px;
-    }
-
-    #search-input {
-        width: 70%;
+        align-items: center;
+        justify-content: end;
     }
 
     .banner {
-        height: 200px;
-        width: 85%;
+        height: 220px;
+        width: 80%;
     }
 
     .banner-content h1 {
@@ -97,7 +102,7 @@
     }
     
     .footer-section h3 {
-        font-size: 0.95rem;
+        font-size: 0.75rem;
     }
     
     .footer-bottom {
@@ -115,6 +120,24 @@
     #topo {
         grid-area: 1 / 1 / 2 / 3;
         padding: 0 15px;
+        flex-direction: column;
+        font-size: 1.1rem;
+    }
+
+    #topo i {
+        font-size: 28px;
+    }
+
+    #logo {
+        font-size: 1.5rem;
+        margin-top: 40px;
+    }
+
+    .search-container {
+        width: 100%;
+        margin-top: 10px;
+        align-items: center;
+        justify-content: end;
     }
 
     .banner {

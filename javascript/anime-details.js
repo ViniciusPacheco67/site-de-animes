@@ -138,7 +138,6 @@ function loadEpisodes(episodes) {
         // Adicionar evento de clique para assistir o episódio
         const watchButton = episodeItem.querySelector('.episode-watch');
         watchButton.addEventListener('click', () => {
-            alert(`Assistindo episódio ${episode.number}: ${episode.title}`);
             // Aqui você pode implementar a lógica para assistir o episódio
         });
         
