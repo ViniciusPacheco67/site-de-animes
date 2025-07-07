@@ -1,16 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Obter o ID do anime da URL
     const urlParams = new URLSearchParams(window.location.search);
-    const animeId = parseInt(urlParams.get('id'));
+    const animeId = Number(urlParams.get('id'));
+    const anime = animeData.find(a => a.id === animeId);
+    const container = document.getElementById('anime-details');
+
     
-    if (!animeId) {
+    if (isNaN(animeId)) {
         showError('ID do anime não encontrado na URL');
         return;
     }
     
     // Obter os dados do anime
-    const anime = getAnimeById(animeId);
+function getAnimeById(id) {
+    return animeData.find(anime => anime.id === id);
+}
+
+// Função para obter animes relacionados
+function getRelatedAnimes(relatedIds) {
+    return relatedIds.map(id => getAnimeById(id));
+}
+
+// Função para obter recomendações (excluindo o anime atual e seus relacionados)
+function getRecommendations(currentAnimeId, limit = 6) {
+    const currentAnime = getAnimeById(currentAnimeId);
+    const excludeIds = [currentAnimeId, ...currentAnime.related];
     
+    return animeData
+        .filter(anime => !excludeIds.includes(anime.id))
+        .sort(() => 0.5 - Math.random())
+        .slice(0, limit);
+}
+
     if (!anime) {
         showError('Anime não encontrado');
         return;
@@ -45,7 +66,7 @@ function showError(message) {
 // Função para carregar os detalhes do anime
 function loadAnimeDetails(anime) {
     // Atualizar o título da página
-    document.title = `${anime.title} - Animes.online`;
+    document.title = `${anime.title} - Animes.Dragon`;
     
     // Atualizar o breadcrumb
     document.getElementById('anime-title-breadcrumb').textContent = anime.title;
@@ -117,40 +138,34 @@ function loadGenres(genres) {
 
 // Função para carregar os episódios
 function loadEpisodes(episodes) {
-  const episodesList = document.getElementById('episodes-list');
-  episodesList.innerHTML = '';
-
-  if (!episodes || episodes.length === 0) {
-    episodesList.innerHTML = '<p class="no-content">Nenhum episódio disponível.</p>';
-    return;
-  }
-
-  // 🔥 Exemplo de links reais associados aos episódios (adicione conforme precisar)
-  const links = {
-    // Adicione mais se quiser
-  };
-
-  episodes.forEach(episode => {
-    const episodeItem = document.createElement('div');
-    episodeItem.className = 'episode-item';
-
-    const link = links[episode.number];
-
-    episodeItem.innerHTML = `
-      <div class="episode-number">${episode.number}</div>
-      <div class="episode-title">${episode.title}</div>
-      <div class="episode-date">${episode.date}</div>
-      ${
-        link
-          ? `<a class="episode-watch" href="${link}" target="_blank"><i class="fas fa-play"></i> Assistir</a>`
-          : `<button class="episode-watch" disabled><i class="fas fa-play"></i> Indisponível</button>`
-      }
-    `;
-
-    episodesList.appendChild(episodeItem);
-  });
+    const episodesList = document.getElementById('episodes-list');
+    episodesList.innerHTML = '';
+    
+    if (episodes.length === 0) {
+        episodesList.innerHTML = '<p class="no-content">Nenhum episódio disponível.</p>';
+        return;
+    }
+    
+    episodes.forEach(episode => {
+        const episodeItem = document.createElement('div');
+        episodeItem.className = 'episode-item';
+        episodeItem.innerHTML = `
+            <div class="episode-number">${episode.number}</div>
+            <div class="episode-title">${episode.title}</div>
+            <div class="episode-date">${episode.date}</div>
+            <button class="episode-watch"><i class="fas fa-play"></i></button>
+        `;
+        
+        // Adicionar evento de clique para assistir o episódio
+        const watchButton = episodeItem.querySelector('.episode-watch');
+        watchButton.addEventListener('click', () => {
+            alert(`Assistindo episódio ${episode.number}: ${episode.title}`);
+            // Aqui você pode implementar a lógica para assistir o episódio
+        });
+        
+        episodesList.appendChild(episodeItem);
+    });
 }
-
 
 // Função para carregar os personagens
 function loadCharacters(characters) {
@@ -262,7 +277,7 @@ function setupCommentForm(animeId) {
         }
         
         // Verificar se o usuário está logado (simulado)
-        const isLoggedIn = false; // Altere para true para simular um usuário logado
+        const isLoggedIn = true; // Apenas para testes
         
         if (!isLoggedIn) {
             if (confirm('Você precisa estar logado para comentar. Deseja ir para a página de login?')) {

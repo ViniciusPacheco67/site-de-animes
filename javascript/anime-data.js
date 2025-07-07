@@ -410,29 +410,3 @@ const animeData = [
     }
 ];
 
-// Função para obter anime por ID
-function getAnimeById(id) {
-    return animeData.find(anime => anime.id === id);
-}
-
-// Função para obter animes relacionados
-function getRelatedAnimes(relatedIds) {
-    return relatedIds.map(id => getAnimeById(id));
-}
-
-// Função para obter recomendações (excluindo o anime atual e seus relacionados)
-function getRecommendations(currentAnimeId, limit = 6) {
-    const currentAnime = getAnimeById(currentAnimeId);
-    const excludeIds = [currentAnimeId, ...currentAnime.related];
-    
-    return animeData
-        .filter(anime => !excludeIds.includes(anime.id))
-        .sort(() => 0.5 - Math.random())
-        .slice(0, limit);
-}
-
-episodes: [
-  { number: 1, title: "O Começo", date: "2023-01-01" },
-  { number: 2, title: "A Prova", date: "2023-01-02" },
-  { number: 3, title: "Sasuke e Sakura", date: "2023-01-03" }
-]
