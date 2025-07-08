@@ -49,10 +49,10 @@ backToTopButton.addEventListener('click', (e) => {
 
 // Carrossel de imagens para o banner (opcional)
 const bannerImages = [
-    '../imagens/FEzQxqZXwAMnGia.jpg',
-    '../imagens/bleach-color-page_8vuh.jpg',
-    '../imagens/Dandadan-Segunda-Temporada-Okarun-Momo-Ayase-Vovo-Turbo-CAPA.webp',
-    '../imagens/kaiju-no-8.webp',
+    '../imagens/#',
+    '../imagens/#',
+    '../imagens/#',
+    '../imagens/#',
 
 ];
 

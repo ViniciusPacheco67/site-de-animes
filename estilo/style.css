@@ -204,7 +204,7 @@ body, html {
 }
 
 .list:hover {
-    transform: translateY(7px);
+    transform: translateX(7px);
     background-color: #ecb776;
     box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
 }

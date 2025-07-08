@@ -1,390 +1,300 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Obter o ID do anime da URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const animeId = Number(urlParams.get('id'));
-    const anime = animeData.find(a => a.id === animeId);
-    const container = document.getElementById('anime-details');
+    const animeId = getAnimeIdFromUrl();
 
-    
-    if (isNaN(animeId)) {
-        showError('ID do anime não encontrado na URL');
-        return;
-    }
-    
-    // Obter os dados do anime
+    if (!animeId) return showError('ID do anime não encontrado na URL');
+
+    const anime = getAnimeById(animeId);
+    if (!anime) return showError('Anime não encontrado');
+
+    renderAnime(anime);
+});
+
+function getAnimeIdFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    return params.has('id') && !isNaN(id) ? id : null;
+}
+
 function getAnimeById(id) {
     return animeData.find(anime => anime.id === id);
 }
 
-// Função para obter animes relacionados
-function getRelatedAnimes(relatedIds) {
-    return relatedIds.map(id => getAnimeById(id));
+function getRelatedAnimes(ids) {
+    return (Array.isArray(ids) ? ids : [])
+        .map(getAnimeById)
+        .filter(Boolean);
 }
 
-// Função para obter recomendações (excluindo o anime atual e seus relacionados)
-function getRecommendations(currentAnimeId, limit = 6) {
-    const currentAnime = getAnimeById(currentAnimeId);
-    const excludeIds = [currentAnimeId, ...currentAnime.related];
-    
+function getRecommendations(currentId, limit = 6) {
+    const current = getAnimeById(currentId);
+    const exclude = [currentId, ...(current?.related || [])];
+
     return animeData
-        .filter(anime => !excludeIds.includes(anime.id))
-        .sort(() => 0.5 - Math.random())
+        .filter(anime => !exclude.includes(anime.id))
+        .sort(() => Math.random() - 0.5)
         .slice(0, limit);
 }
 
-    if (!anime) {
-        showError('Anime não encontrado');
-        return;
-    }
-    
-    // Carregar os dados do anime na página
-    loadAnimeDetails(anime);
-    
-    // Configurar as abas
-    setupTabs();
-    
-    // Configurar botões de ação
-    setupActionButtons(anime);
-    
-    // Carregar recomendações
-    loadRecommendations(anime.id);
-});
-
-// Função para exibir mensagem de erro
-function showError(message) {
-    const mainContent = document.querySelector('.anime-details-content');
-    mainContent.innerHTML = `
+function showError(msg) {
+    document.querySelector('.anime-details-content').innerHTML = `
         <div class="error-message">
             <i class="fas fa-exclamation-circle"></i>
             <h2>Erro</h2>
-            <p>${message}</p>
+            <p>${msg}</p>
             <a href="index.html" class="back-button">Voltar para a página inicial</a>
         </div>
     `;
 }
 
-// Função para carregar os detalhes do anime
-function loadAnimeDetails(anime) {
-    // Atualizar o título da página
-    document.title = `${anime.title} - Animes.Dragon`;
-    
-    // Atualizar o breadcrumb
+function renderAnime(anime) {
+    document.title = `${anime.title} - Animes.Dragons`;
     document.getElementById('anime-title-breadcrumb').textContent = anime.title;
-    
-    // Carregar a imagem do poster
-    const posterImg = document.getElementById('anime-poster');
-    posterImg.src = anime.image;
-    posterImg.alt = `Poster de ${anime.title}`;
-    
-    // Carregar informações básicas
-    document.getElementById('anime-title').textContent = anime.title;
-    document.getElementById('anime-year').textContent = `Ano: ${anime.year}`;
-    document.getElementById('anime-episodes').textContent = `Episódios: ${anime.episodes}`;
-    document.getElementById('anime-status').textContent = `Status: ${anime.status}`;
-    document.getElementById('anime-rating').textContent = anime.rating.toFixed(1);
-    document.getElementById('anime-synopsis').textContent = anime.synopsis;
-    
-    // Configurar as estrelas de avaliação
+    document.getElementById('anime-poster').src = anime.image;
+    document.getElementById('anime-poster').alt = `Poster de ${anime.title}`;
+
+    setText('anime-title', anime.title);
+    setText('anime-year', `Ano: ${anime.year}`);
+    setText('anime-episodes', `Episódios: ${anime.episodes?.length || 0}`);
+    setText('anime-status', `Status: ${anime.status}`);
+    setText('anime-rating', anime.rating.toFixed(1));
+    setText('anime-synopsis', anime.synopsis);
+
     setupRatingStars(anime.rating);
-    
-    // Carregar gêneros
-    loadGenres(anime.genres);
-    
-    // Carregar conteúdo das abas
-    loadEpisodes(anime.episodes);
-    loadCharacters(anime.characters);
-    loadRelatedAnimes(anime.related);
-    loadComments(anime.id);
+    renderGenres(anime.genres);
+    renderEpisodes(anime.episodes);
+    renderCharacters(anime.characters);
+    renderRelatedAnimes(anime.related);
+    renderComments(anime.id);
+    setupTabs();
+    setupActionButtons(anime);
+    renderRecommendations(anime.id);
 }
 
-// Função para configurar as estrelas de avaliação
+function setText(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+}
+
 function setupRatingStars(rating) {
-    const starsContainer = document.querySelector('.stars');
-    starsContainer.innerHTML = '';
-    
-    // Calcular o número de estrelas cheias, metade e vazias
-    const fullStars = Math.floor(rating / 2);
-    const halfStar = rating % 2 >= 1 ? 1 : 0;
-    const emptyStars = 5 - fullStars - halfStar;
-    
-    // Adicionar estrelas cheias
-    for (let i = 0; i < fullStars; i++) {
-        starsContainer.innerHTML += '<i class="fas fa-star"></i>';
-    }
-    
-    // Adicionar meia estrela se necessário
-    if (halfStar) {
-        starsContainer.innerHTML += '<i class="fas fa-star-half-alt"></i>';
-    }
-    
-    // Adicionar estrelas vazias
-    for (let i = 0; i < emptyStars; i++) {
-        starsContainer.innerHTML += '<i class="far fa-star"></i>';
-    }
+    const el = document.querySelector('.stars');
+    if (!el) return;
+
+    el.innerHTML = '';
+    const full = Math.floor(rating / 2);
+    const half = rating % 2 >= 1 ? 1 : 0;
+    const empty = 5 - full - half;
+
+    el.innerHTML += '<i class="fas fa-star"></i>'.repeat(full);
+    if (half) el.innerHTML += '<i class="fas fa-star-half-alt"></i>';
+    el.innerHTML += '<i class="far fa-star"></i>'.repeat(empty);
 }
 
-// Função para carregar os gêneros
-function loadGenres(genres) {
-    const genresContainer = document.getElementById('anime-genres');
-    genresContainer.innerHTML = '';
-    
-    genres.forEach(genre => {
-        const genreTag = document.createElement('span');
-        genreTag.className = 'genre-tag';
-        genreTag.textContent = genre;
-        genresContainer.appendChild(genreTag);
+function renderGenres(genres) {
+    const container = document.getElementById('anime-genres');
+    if (!container) return;
+    container.innerHTML = '';
+
+    genres.forEach(g => {
+        const span = document.createElement('span');
+        span.className = 'genre-tag';
+        span.textContent = g;
+        container.appendChild(span);
     });
 }
 
-// Função para carregar os episódios
-function loadEpisodes(episodes) {
-    const episodesList = document.getElementById('episodes-list');
-    episodesList.innerHTML = '';
-    
-    if (episodes.length === 0) {
-        episodesList.innerHTML = '<p class="no-content">Nenhum episódio disponível.</p>';
-        return;
-    }
-    
-    episodes.forEach(episode => {
-        const episodeItem = document.createElement('div');
-        episodeItem.className = 'episode-item';
-        episodeItem.innerHTML = `
-            <div class="episode-number">${episode.number}</div>
-            <div class="episode-title">${episode.title}</div>
-            <div class="episode-date">${episode.date}</div>
+function renderEpisodes(episodes = []) {
+    const container = document.getElementById('episodes-list');
+    if (!container) return;
+
+    container.innerHTML = episodes.length
+        ? ''
+        : '<p class="no-content">Nenhum episódio disponível.</p>';
+
+    episodes.forEach(({ number, title, date }) => {
+        const el = document.createElement('div');
+        el.className = 'episode-item';
+        el.innerHTML = `
+            <div class="episode-number">${number}</div>
+            <div class="episode-title">${title}</div>
+            <div class="episode-date">${date}</div>
             <button class="episode-watch"><i class="fas fa-play"></i></button>
         `;
-        
-        // Adicionar evento de clique para assistir o episódio
-        const watchButton = episodeItem.querySelector('.episode-watch');
-        watchButton.addEventListener('click', () => {
-            alert(`Assistindo episódio ${episode.number}: ${episode.title}`);
-            // Aqui você pode implementar a lógica para assistir o episódio
-        });
-        
-        episodesList.appendChild(episodeItem);
+        el.querySelector('.episode-watch').onclick = () => {
+            alert(`Assistindo episódio ${number}: ${title}`);
+        };
+        container.appendChild(el);
     });
 }
 
-// Função para carregar os personagens
-function loadCharacters(characters) {
-    const charactersGrid = document.getElementById('characters-grid');
-    charactersGrid.innerHTML = '';
-    
-    if (characters.length === 0) {
-        charactersGrid.innerHTML = '<p class="no-content">Nenhum personagem disponível.</p>';
-        return;
-    }
-    
-    characters.forEach(character => {
-        const characterCard = document.createElement('div');
-        characterCard.className = 'character-card';
-        
-        // Verificar se a imagem existe, caso contrário usar uma imagem padrão
-        const characterImage = character.image || '../imagens/character-placeholder.jpg';
-        
-        characterCard.innerHTML = `
-            <img src="${characterImage}" alt="${character.name}" class="character-image" onerror="this.src='../imagens/character-placeholder.jpg'">
+function renderCharacters(characters = []) {
+    const grid = document.getElementById('characters-grid');
+    if (!grid) return;
+
+    grid.innerHTML = characters.length
+        ? ''
+        : '<p class="no-content">Nenhum personagem disponível.</p>';
+
+    characters.forEach(({ name, role, image }) => {
+        const card = document.createElement('div');
+        card.className = 'character-card';
+        card.innerHTML = `
+            <img src="${image || '../imagens/character-placeholder.jpg'}" alt="${name}" class="character-image"
+                onerror="this.src='../imagens/character-placeholder.jpg'">
             <div class="character-info">
-                <div class="character-name">${character.name}</div>
-                <div class="character-role">${character.role}</div>
+                <div class="character-name">${name}</div>
+                <div class="character-role">${role}</div>
             </div>
         `;
-        
-        charactersGrid.appendChild(characterCard);
+        grid.appendChild(card);
     });
 }
 
-// Função para carregar animes relacionados
-function loadRelatedAnimes(relatedIds) {
-    const relatedGrid = document.getElementById('related-anime-grid');
-    relatedGrid.innerHTML = '';
-    
-    if (relatedIds.length === 0) {
-        relatedGrid.innerHTML = '<p class="no-content">Nenhum anime relacionado disponível.</p>';
-        return;
-    }
-    
-    const relatedAnimes = getRelatedAnimes(relatedIds);
-    
-    relatedAnimes.forEach(anime => {
-        if (!anime) return; // Pular se o anime não for encontrado
-        
-        const animeCard = document.createElement('div');
-        animeCard.className = 'related-anime-card';
-        animeCard.innerHTML = `
+function renderRelatedAnimes(ids = []) {
+    const grid = document.getElementById('related-anime-grid');
+    if (!grid) return;
+
+    const related = getRelatedAnimes(ids);
+    grid.innerHTML = related.length
+        ? ''
+        : '<p class="no-content">Nenhum anime relacionado disponível.</p>';
+
+    related.forEach(anime => {
+        const el = document.createElement('div');
+        el.className = 'related-anime-card';
+        el.innerHTML = `
             <a href="anime-details.html?id=${anime.id}">
-                <img src="${anime.image}" alt="${anime.title}" class="related-anime-image">
-                <div class="related-anime-info">
-                    <div class="related-anime-title">${anime.title}</div>
-                </div>
+                <img src="${anime.image}" alt="${anime.title}" onerror="this.src='imagens/placeholder.jpg'">
+                <div class="related-anime-title">${anime.title}</div>
             </a>
         `;
-        
-        relatedGrid.appendChild(animeCard);
+        grid.appendChild(el);
     });
 }
 
-// Função para carregar comentários (simulados)
-function loadComments(animeId) {
-    const commentsList = document.getElementById('comments-list');
-    commentsList.innerHTML = '';
-    
-    // Comentários simulados
-    const sampleComments = [
-        { user: 'AnimeLovers123', date: '2023-10-15', content: 'Este anime é incrível! A animação e a história são de primeira qualidade.' },
-        { user: 'OtakuMaster', date: '2023-10-10', content: 'Gostei muito dos personagens, mas achei o ritmo um pouco lento no início.' },
-        { user: 'SakuraChan', date: '2023-10-05', content: 'Meu anime favorito! Já assisti três vezes e sempre descubro algo novo.' }
+function renderComments(animeId) {
+    const container = document.getElementById('comments-list');
+    if (!container) return;
+
+    const comments = [
+        { user: 'AnimeLovers123', date: '2023-10-15', content: 'Este anime é incrível!' },
+        { user: 'OtakuMaster', date: '2023-10-10', content: 'Ritmo lento no começo, mas depois melhora.' },
+        { user: 'SakuraChan', date: '2023-10-05', content: 'Assisti amo demais.' }
     ];
-    
-    sampleComments.forEach(comment => {
-        const commentItem = document.createElement('div');
-        commentItem.className = 'comment-item';
-        commentItem.innerHTML = `
-            <div class="comment-header">
-                <span class="comment-user">${comment.user}</span>
-                <span class="comment-date">${formatDate(comment.date)}</span>
+
+    container.innerHTML = '';
+    comments.forEach(({ user, date, content }) => {
+        container.innerHTML += `
+            <div class="comment-item">
+                <div class="comment-header">
+                    <span class="comment-user">${user}</span>
+                    <span class="comment-date">${formatDate(date)}</span>
+                </div>
+                <div class="comment-content">${content}</div>
             </div>
-            <div class="comment-content">${comment.content}</div>
         `;
-        
-        commentsList.appendChild(commentItem);
     });
-    
-    // Configurar o formulário de comentários
+
     setupCommentForm(animeId);
 }
 
-// Função para formatar a data
-function formatDate(dateString) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString('pt-BR', options);
-}
-
-// Função para configurar o formulário de comentários
 function setupCommentForm(animeId) {
-    const commentForm = document.querySelector('.comment-form');
-    const commentButton = commentForm.querySelector('button');
-    const commentTextarea = commentForm.querySelector('textarea');
-    
-    commentButton.addEventListener('click', () => {
-        const commentText = commentTextarea.value.trim();
-        
-        if (commentText === '') {
-            alert('Por favor, escreva um comentário antes de enviar.');
-            return;
-        }
-        
-        // Verificar se o usuário está logado (simulado)
-        const isLoggedIn = true; // Apenas para testes
-        
+    const form = document.querySelector('.comment-form');
+    if (!form) return;
+
+    const button = form.querySelector('button');
+    const textarea = form.querySelector('textarea');
+
+    button.onclick = () => {
+        const text = textarea.value.trim();
+        if (!text) return alert('Escreva um comentário.');
+
+        const isLoggedIn = true;
         if (!isLoggedIn) {
             if (confirm('Você precisa estar logado para comentar. Deseja ir para a página de login?')) {
-                window.location.href = 'tela-de-login/index.html';
+                return (window.location.href = 'tela-de-login/index.html');
             }
             return;
         }
-        
-        // Adicionar o comentário (simulado)
-        const commentsList = document.getElementById('comments-list');
-        const newComment = document.createElement('div');
-        newComment.className = 'comment-item';
-        newComment.innerHTML = `
-            <div class="comment-header">
-                <span class="comment-user">Você</span>
-                <span class="comment-date">${formatDate(new Date().toISOString())}</span>
-            </div>
-            <div class="comment-content">${commentText}</div>
-        `;
-        
-        commentsList.insertBefore(newComment, commentsList.firstChild);
-        commentTextarea.value = '';
-    });
-}
 
-// Função para carregar recomendações
-function loadRecommendations(animeId) {
-    const recommendationsList = document.getElementById('recommendations-list');
-    recommendationsList.innerHTML = '';
-    
-    const recommendations = getRecommendations(animeId);
-    
-    recommendations.forEach(anime => {
-        const recommendationCard = document.createElement('div');
-        recommendationCard.className = 'recommendation-card';
-        recommendationCard.innerHTML = `
-            <a href="anime-details.html?id=${anime.id}">
-                <img src="${anime.image}" alt="${anime.title}" class="recommendation-image">
-                <div class="recommendation-info">
-                    <div class="recommendation-title">${anime.title}</div>
+        const container = document.getElementById('comments-list');
+        const now = formatDate(new Date().toISOString());
+
+        container.insertAdjacentHTML('afterbegin', `
+            <div class="comment-item">
+                <div class="comment-header">
+                    <span class="comment-user">Você</span>
+                    <span class="comment-date">${now}</span>
                 </div>
-            </a>
-        `;
-        
-        recommendationsList.appendChild(recommendationCard);
+                <div class="comment-content">${text}</div>
+            </div>
+        `);
+        textarea.value = '';
+    };
+}
+
+function formatDate(dateStr) {
+    return new Date(dateStr).toLocaleDateString('pt-BR', {
+        year: 'numeric', month: 'long', day: 'numeric'
     });
 }
 
-// Função para configurar as abas
+function renderRecommendations(animeId) {
+    const list = document.getElementById('recommendations-list');
+    if (!list) return;
+
+    const recs = getRecommendations(animeId);
+    list.innerHTML = '';
+
+    recs.forEach(anime => {
+        list.innerHTML += `
+            <div class="recommendation-card">
+                <a href="anime-details.html?id=${anime.id}">
+                    <img src="${anime.image}" alt="${anime.title}" class="recommendation-image">
+                    <div class="recommendation-info">
+                        <div class="recommendation-title">${anime.title}</div>
+                    </div>
+                </a>
+            </div>
+        `;
+    });
+}
+
 function setupTabs() {
-    const tabButtons = document.querySelectorAll('.tab-button');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-    
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            // Remover a classe 'active' de todos os botões e painéis
-            tabButtons.forEach(btn => btn.classList.remove('active'));
-            tabPanes.forEach(pane => pane.classList.remove('active'));
-            
-            // Adicionar a classe 'active' ao botão clicado e ao painel correspondente
-            button.classList.add('active');
-            const tabId = button.getAttribute('data-tab');
-            document.getElementById(tabId).classList.add('active');
+    const buttons = document.querySelectorAll('.tab-button');
+    const panes = document.querySelectorAll('.tab-pane');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            buttons.forEach(b => b.classList.remove('active'));
+            panes.forEach(p => p.classList.remove('active'));
+
+            btn.classList.add('active');
+            document.getElementById(btn.dataset.tab).classList.add('active');
         });
     });
 }
 
-// Função para configurar os botões de ação
 function setupActionButtons(anime) {
-    const watchButton = document.querySelector('.watch-button');
-    const favoriteButton = document.querySelector('.favorite-button');
-    
-    // Botão de assistir
-    watchButton.addEventListener('click', () => {
-        // Redirecionar para o primeiro episódio ou mostrar uma mensagem
-        if (anime.episodes && anime.episodes.length > 0) {
-            alert(`Assistindo ${anime.title} - Episódio 1: ${anime.episodes[0].title}`);
-            // Aqui você pode implementar a lógica para assistir o episódio
-        } else {
-            alert('Nenhum episódio disponível para este anime.');
-        }
-    });
-    
-    // Botão de favoritos
-    favoriteButton.addEventListener('click', () => {
-        // Verificar se o usuário está logado (simulado)
-        const isLoggedIn = false; // Altere para true para simular um usuário logado
-        
+    const watchBtn = document.querySelector('.watch-button');
+    const favBtn = document.querySelector('.favorite-button');
+
+    watchBtn.onclick = () => {
+        const ep = anime.episodes?.[0];
+        alert(ep ? `Assistindo ${anime.title} - Episódio 1: ${ep.title}` : 'Nenhum episódio disponível.');
+    };
+
+    favBtn.onclick = () => {
+        const isLoggedIn = true;
         if (!isLoggedIn) {
-            if (confirm('Você precisa estar logado para adicionar aos favoritos. Deseja ir para a página de login?')) {
-                window.location.href = 'tela-de-login/index.html';
+            if (confirm('Você precisa estar logado para adicionar aos favoritos. Ir para login?')) {
+                return (window.location.href = 'tela-de-login/index.html');
             }
             return;
         }
-        
-        // Alternar o estado de favorito
-        favoriteButton.classList.toggle('active');
-        
-        const isFavorite = favoriteButton.classList.contains('active');
-        const heartIcon = favoriteButton.querySelector('i');
-        
-        if (isFavorite) {
-            heartIcon.className = 'fas fa-heart';
-            alert(`${anime.title} foi adicionado aos seus favoritos!`);
-        } else {
-            heartIcon.className = 'far fa-heart';
-            alert(`${anime.title} foi removido dos seus favoritos.`);
-        }
-    });
+
+        favBtn.classList.toggle('active');
+        const fav = favBtn.classList.contains('active');
+        favBtn.querySelector('i').className = fav ? 'fas fa-heart' : 'far fa-heart';
+        alert(`${anime.title} ${fav ? 'adicionado aos' : 'removido dos'} favoritos!`);
+    };
 }
