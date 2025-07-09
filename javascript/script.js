@@ -49,10 +49,11 @@ backToTopButton.addEventListener('click', (e) => {
 
 // Carrossel de imagens para o banner (opcional)
 const bannerImages = [
-    '../imagens/#',
-    '../imagens/#',
-    '../imagens/#',
-    '../imagens/#',
+    '../imagens/banner/banner-frieren.jpg',
+    '../imagens/banner/banner-ataque-dos-titans.jpg',
+    '../imagens/banner/banner-bleach.jpg',
+    '../imagens/banner/banner-solo.jpg',
+    '../imagens/banner/banner-one-piece.jpg',
 
 ];
 

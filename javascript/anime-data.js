@@ -12,18 +12,18 @@ const animeData = [
         synopsis: "Kazuya Kinoshita é um estudante universitário que, após ser dispensado por sua namorada após um mês de namoro, decide usar um aplicativo para alugar uma namorada chamada Chizuru Mizuhara. No entanto, porque ela parece tão autêntica, ele começa a desenvolver sentimentos reais por ela. Mas depois de descobrir que ela não é tão genuína quanto ele pensava, ele a avalia mal. Quando a avó de Kazuya colapsa no hospital, ele leva Chizuru para vê-la, e sua avó fica tão feliz com ela que Kazuya continua alugando-a para manter as aparências.",
         rating: 7.2,
         episodes: [
-            { number: 1, title: "Namorada e Namorada", date: "10/07/2020" },
-            { number: 2, title: "Ex e Namorada", date: "17/07/2020" },
-            { number: 3, title: "Encontro e Namorada", date: "24/07/2020" },
-            { number: 4, title: "Amigo e Namorada", date: "31/07/2020" },
-            { number: 5, title: "Avó e Namorada", date: "07/08/2020" },
-            { number: 6, title: "Namorada e Namorada", date: "14/08/2020" },
-            { number: 7, title: "Mentira e Namorada", date: "21/08/2020" },
-            { number: 8, title: "Natal e Namorada", date: "28/08/2020" },
-            { number: 9, title: "Vizinhos e Namorada", date: "04/09/2020" },
-            { number: 10, title: "Verdade e Namorada", date: "11/09/2020" },
-            { number: 11, title: "Namorada e Namorada", date: "18/09/2020" },
-            { number: 12, title: "Confissão e Namorada", date: "25/09/2020" }
+            { number: 1, title: "Namorada e Namorada", date: "10/07/2020", link:"" },
+            { number: 2, title: "Ex e Namorada", date: "17/07/2020", link:"" },
+            { number: 3, title: "Encontro e Namorada", date: "24/07/2020", link:"" },
+            { number: 4, title: "Amigo e Namorada", date: "31/07/2020", link:"" },
+            { number: 5, title: "Avó e Namorada", date: "07/08/2020", link:"" },
+            { number: 6, title: "Namorada e Namorada", date: "14/08/2020", link:"" },
+            { number: 7, title: "Mentira e Namorada", date: "21/08/2020", link:"" },
+            { number: 8, title: "Natal e Namorada", date: "28/08/2020", link:"" },
+            { number: 9, title: "Vizinhos e Namorada", date: "04/09/2020", link:"" },
+            { number: 10, title: "Verdade e Namorada", date: "11/09/2020", link:"" },
+            { number: 11, title: "Namorada e Namorada", date: "18/09/2020", link:"" },
+            { number: 12, title: "Confissão e Namorada", date: "25/09/2020", link:"" }
         ],
         characters: [
             { name: "Kazuya Kinoshita", role: "Protagonista", image: "../imagens/characters/kazuya.jpg" },
@@ -89,7 +89,7 @@ const animeData = [
     ],
     characters: [
             { name: "Naruto Uzumaki", role: "Protagonista", image: "../imagens/characters/naruto.jpg" },
-            { name: "Sasuke Uchiha", role: "Antagonista/Coadjuvante", image: "../imagens/characters/sasuke.jpg" },
+            { name: "Sasuke Uchiha", role: "Coadjuvante", image: "../imagens/characters/sasuke.jpg" },
             { name: "Sakura Haruno", role: "Coadjuvante", image: "../imagens/characters/sakura.jpg" },
             { name: "Kakashi Hatake", role: "Mentor", image: "../imagens/characters/kakashi.jpg" },
             { name: "Pain (Nagato)", role: "Antagonista", image: "../imagens/characters/pain.jpg" }
