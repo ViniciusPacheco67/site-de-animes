@@ -12,7 +12,7 @@ const animeData = [
         synopsis: "Kazuya Kinoshita é um estudante universitário que, após ser dispensado por sua namorada após um mês de namoro, decide usar um aplicativo para alugar uma namorada chamada Chizuru Mizuhara. No entanto, porque ela parece tão autêntica, ele começa a desenvolver sentimentos reais por ela. Mas depois de descobrir que ela não é tão genuína quanto ele pensava, ele a avalia mal. Quando a avó de Kazuya colapsa no hospital, ele leva Chizuru para vê-la, e sua avó fica tão feliz com ela que Kazuya continua alugando-a para manter as aparências.",
         rating: 7.2,
         episodes: [
-            { number: 1, title: "Namorada e Namorada", date: "10/07/2020", link:"" },
+            { number: 1, title: "Namorada e Namorada", date: "10/07/2020", crunchyrollUrl: "https://www.crunchyroll.com/series/G6QWV3976/rent-a-girlfriend"}, // :contentReference[oaicite:1]{index=1}"},
             { number: 2, title: "Ex e Namorada", date: "17/07/2020", link:"" },
             { number: 3, title: "Encontro e Namorada", date: "24/07/2020", link:"" },
             { number: 4, title: "Amigo e Namorada", date: "31/07/2020", link:"" },

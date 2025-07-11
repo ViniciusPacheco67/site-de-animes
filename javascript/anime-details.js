@@ -1,40 +1,46 @@
+// Aguarda o carregamento completo do DOM antes de executar o script
 document.addEventListener('DOMContentLoaded', () => {
-    const animeId = getAnimeIdFromUrl();
+    const animeId = getAnimeIdFromUrl(); // Pega o ID do anime pela URL
 
-    if (!animeId) return showError('ID do anime não encontrado na URL');
+    if (!animeId) return showError('ID do anime não encontrado na URL'); // Se não tiver ID, mostra erro
 
-    const anime = getAnimeById(animeId);
-    if (!anime) return showError('Anime não encontrado');
+    const anime = getAnimeById(animeId); // Busca o anime com base no ID
+    if (!anime) return showError('Anime não encontrado'); // Se não encontrar o anime, mostra erro
 
-    renderAnime(anime);
+    renderAnime(anime); // Renderiza todas as informações do anime na tela
 });
 
+// Pega o ID do anime da URL (?id=1)
 function getAnimeIdFromUrl() {
     const params = new URLSearchParams(window.location.search);
     const id = parseInt(params.get('id'));
     return params.has('id') && !isNaN(id) ? id : null;
 }
 
+// Busca o anime na lista de dados com base no ID
 function getAnimeById(id) {
     return animeData.find(anime => anime.id === id);
 }
 
+// Retorna os animes relacionados a partir de uma lista de IDs
 function getRelatedAnimes(ids) {
     return (Array.isArray(ids) ? ids : [])
         .map(getAnimeById)
-        .filter(Boolean);
+        .filter(Boolean); // Remove valores nulos ou inválidos
 }
 
+// Gera recomendações aleatórias de animes, excluindo o atual e os relacionados
 function getRecommendations(currentId, limit = 6) {
     const current = getAnimeById(currentId);
     const exclude = [currentId, ...(current?.related || [])];
 
     return animeData
         .filter(anime => !exclude.includes(anime.id))
-        .sort(() => Math.random() - 0.5)
-        .slice(0, limit);
+        .sort(() => Math.random() - 0.5) // Embaralha a lista
+        .slice(0, limit); // Limita a quantidade
 }
 
+// Mostra uma mensagem de erro na tela
 function showError(msg) {
     document.querySelector('.anime-details-content').innerHTML = `
         <div class="error-message">
@@ -46,6 +52,7 @@ function showError(msg) {
     `;
 }
 
+// Exibe as informações do anime na página
 function renderAnime(anime) {
     document.title = `${anime.title} - Animes.Dragons`;
     document.getElementById('anime-title-breadcrumb').textContent = anime.title;
@@ -70,25 +77,28 @@ function renderAnime(anime) {
     renderRecommendations(anime.id);
 }
 
+// Define texto em um elemento pelo ID
 function setText(id, text) {
     const el = document.getElementById(id);
     if (el) el.textContent = text;
 }
 
+// Exibe as estrelas de avaliação baseadas na nota (0 a 10 convertido em 5 estrelas)
 function setupRatingStars(rating) {
     const el = document.querySelector('.stars');
     if (!el) return;
 
     el.innerHTML = '';
-    const full = Math.floor(rating / 2);
-    const half = rating % 2 >= 1 ? 1 : 0;
-    const empty = 5 - full - half;
+    const full = Math.floor(rating / 2); // Estrelas cheias
+    const half = rating % 2 >= 1 ? 1 : 0; // Meia estrela
+    const empty = 5 - full - half; // Estrelas vazias
 
     el.innerHTML += '<i class="fas fa-star"></i>'.repeat(full);
     if (half) el.innerHTML += '<i class="fas fa-star-half-alt"></i>';
     el.innerHTML += '<i class="far fa-star"></i>'.repeat(empty);
 }
 
+// Mostra os gêneros como etiquetas
 function renderGenres(genres) {
     const container = document.getElementById('anime-genres');
     if (!container) return;
@@ -102,6 +112,7 @@ function renderGenres(genres) {
     });
 }
 
+// Renderiza a lista de episódios
 function renderEpisodes(episodes = []) {
     const container = document.getElementById('episodes-list');
     if (!container) return;
@@ -126,6 +137,7 @@ function renderEpisodes(episodes = []) {
     });
 }
 
+// Renderiza os personagens do anime
 function renderCharacters(characters = []) {
     const grid = document.getElementById('characters-grid');
     if (!grid) return;
@@ -149,6 +161,7 @@ function renderCharacters(characters = []) {
     });
 }
 
+// Renderiza os animes relacionados
 function renderRelatedAnimes(ids = []) {
     const grid = document.getElementById('related-anime-grid');
     if (!grid) return;
@@ -171,6 +184,7 @@ function renderRelatedAnimes(ids = []) {
     });
 }
 
+// Renderiza os comentários e ativa o formulário
 function renderComments(animeId) {
     const container = document.getElementById('comments-list');
     if (!container) return;
@@ -194,9 +208,10 @@ function renderComments(animeId) {
         `;
     });
 
-    setupCommentForm(animeId);
+    setupCommentForm(animeId); // Ativa o formulário de comentários
 }
 
+// Ativa o envio de comentários
 function setupCommentForm(animeId) {
     const form = document.querySelector('.comment-form');
     if (!form) return;
@@ -208,7 +223,7 @@ function setupCommentForm(animeId) {
         const text = textarea.value.trim();
         if (!text) return alert('Escreva um comentário.');
 
-        const isLoggedIn = true;
+        const isLoggedIn = true; // Aqui simula login
         if (!isLoggedIn) {
             if (confirm('Você precisa estar logado para comentar. Deseja ir para a página de login?')) {
                 return (window.location.href = 'tela-de-login/index.html');
@@ -228,16 +243,18 @@ function setupCommentForm(animeId) {
                 <div class="comment-content">${text}</div>
             </div>
         `);
-        textarea.value = '';
+        textarea.value = ''; // Limpa o campo após comentar
     };
 }
 
+// Formata datas para o padrão brasileiro (ex: 10 de julho de 2025)
 function formatDate(dateStr) {
     return new Date(dateStr).toLocaleDateString('pt-BR', {
         year: 'numeric', month: 'long', day: 'numeric'
     });
 }
 
+// Renderiza as recomendações de animes
 function renderRecommendations(animeId) {
     const list = document.getElementById('recommendations-list');
     if (!list) return;
@@ -259,6 +276,7 @@ function renderRecommendations(animeId) {
     });
 }
 
+// Configura o funcionamento das abas de conteúdo
 function setupTabs() {
     const buttons = document.querySelectorAll('.tab-button');
     const panes = document.querySelectorAll('.tab-pane');
@@ -274,6 +292,7 @@ function setupTabs() {
     });
 }
 
+// Configura os botões de ação: Assistir e Favoritar
 function setupActionButtons(anime) {
     const watchBtn = document.querySelector('.watch-button');
     const favBtn = document.querySelector('.favorite-button');
