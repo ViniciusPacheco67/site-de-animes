@@ -75,8 +75,10 @@
 
     #principal {
         grid-area: 3 / 1 / 4 / 2;
-        width: 100%;
+        width: auto;
         padding: 15px;
+        align-items: flex-start;
+        align-content: center;
     }
 
     .list {
@@ -92,7 +94,7 @@
 
     #secundario {
         grid-area: 4 / 1 / 5 / 2;
-        width: 100%;
+        width: auto;
     }
 
     .secund a {
@@ -163,6 +165,8 @@
     #principal {
         grid-area: 3 / 1 / 4 / 2;
         padding: 15px;
+        width:100%;
+        justify-content: start;
     }
 
     .list {
@@ -173,6 +177,8 @@
     #secundario {
         grid-area: 3 / 2 / 4 / 3;
         display: flex;
+        width: 70%;
+        align-items: end;
     }
 
     #rodape {
